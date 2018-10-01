@@ -76,10 +76,11 @@ router.post('/charges', (req, res) => {
 })
 
 const chargeStripe = req => {
+  console.log(req.body)
   return stripe.charges.create({
-    amount: 20000,
+    amount: req.body.order.total,
     currency: 'usd',
-    description: `Nozama ${order.id}`,
+    description: `Nozama ${req.body.order.id}`,
     source: req.body.token.id
   })
 }
